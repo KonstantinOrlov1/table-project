@@ -25,3 +25,15 @@ export const addComments = (data, id) => {
   comments = JSON.stringify({ ...comments, [id]: data });
   localStorage.setItem("comments", comments);
 };
+
+// export const saveStore = (data) => {
+//   let comments;
+
+//   for ([key, value] of Object.entries(data)) {
+//     comments = {
+//       ...comments,
+//       [key]: value,
+//     };
+//   }
+
+// };

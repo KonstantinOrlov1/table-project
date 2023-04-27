@@ -2,16 +2,9 @@ import { useState } from "react";
 import { addComments } from "../../utils/helpers";
 import styles from "./styles.module.css";
 
-export const CommentColumn = ({ idElem, index }) => {
+export const CommentColumn = ({ getComment, idElem, index, setState }) => {
   const id = idElem?.$oid ? idElem?.$oid : `${index}`;
-
-  // const addComments = (data) => {
-  //   if (data === "") {
-  //     localStorage.removeItem(id);
-  //   }
-
-  //   localStorage.setItem([id], data);
-  // };
+  const comment = getComment || "";
 
   return (
     <textarea
@@ -21,8 +14,15 @@ export const CommentColumn = ({ idElem, index }) => {
       rows="1"
       placeholder="Ваш комментарий"
       className={styles.comment}
-      onChange={(e) => addComments(e.target.value, id)}
-      // defaultValue={localStorage.getItem(id) || ""}
+      onChange={(e) =>
+        setState((v) => {
+          return {
+            ...v,
+            [id]: e.target.value,
+          };
+        })
+      }
+      defaultValue={comment}
     ></textarea>
   );
 };

@@ -18,17 +18,29 @@ const Row = ({ index, style }) => {
       <CellDate value={data[index].start} />
       <CellDate value={data[index].end} />
       <CellSvod value={data[index].isSvod} />
-      <CommentColumn idElem={data[index]._id} index={index} />
+      <CommentColumn
+        setState={setState}
+        idElem={data[index]._id}
+        index={index}
+        getComment={state[data[index]._id.$oid]}
+      />
     </div>
   );
 };
 
 export const RootPage = () => {
-  let [state, setState] = useState({});
+  let [state, setState] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("comments")) || {};
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   useEffect(() => {
-    setState(JSON.parse(localStorage.getItem("comments") || "{}"));
-  }, []);
+    const comments = JSON.stringify(state);
+    localStorage.setItem("comments", comments);
+  }, [state]);
 
   return (
     <ThemeContext.Provider value={{ state, setState }}>
