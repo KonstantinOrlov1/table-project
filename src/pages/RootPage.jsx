@@ -11,11 +11,11 @@ import { CommentColumn } from "../components/Cell/CommentColumn";
 const Row = ({ index, style }) => {
   return (
     <div style={style} className={classNames(styles.row, styles.row_table)}>
-      <CellYear value={data[index]?.year} />
-      <CellDate value={data[index]?.start} />
-      <CellDate value={data[index]?.end} />
-      <CellSvod value={data[index]?.isSvod} />
-      <CommentColumn idElem={data[index]?._id} index={index} />
+      <CellYear value={data[index].year} />
+      <CellDate value={data[index].start} />
+      <CellDate value={data[index].end} />
+      <CellSvod value={data[index].isSvod} />
+      <CommentColumn idElem={data[index]._id} index={index} />
     </div>
   );
 };

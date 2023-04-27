@@ -3,12 +3,21 @@ import { MONTH } from "../../utils/helpers";
 import styles from "./styles.module.css";
 
 export const CellDate = ({ value }) => {
-  const date =
+  let date;
+
+  if (!value) {
+    date = "Нет данных";
+    return (
+      <span className={classNames(styles.value, styles.date)}>{date}</span>
+    );
+  }
+
+  date =
     new Date(value?.$date) == "Invalid Date"
-      ? "Нет данных"
+      ? "Некорректная дата"
       : new Date(value.$date);
 
-  if (date === "Нет данных") {
+  if (date === "Некорректная дата") {
     return (
       <span className={classNames(styles.value, styles.date)}>{date}</span>
     );

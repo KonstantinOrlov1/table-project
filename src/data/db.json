@@ -4,6 +4,8 @@
     "cellsShownCount": 1,
     "colsCount": 1,
     "obj": "1835",
+    "end": { "$date": "2023-03-27T00:03:18.279Z" },
+    "start": { "$date": "2023-03-27T00:03:17.661Z" },
     "period": "4",
     "rowsCount": 1,
     "state": "ready",
