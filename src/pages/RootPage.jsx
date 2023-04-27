@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FixedSizeList } from "react-window";
 import data from "../data/db.json";
 import styles from "./styles.module.css";
@@ -7,8 +7,11 @@ import { CellDate } from "../components/Cell/CellDate";
 import { CellSvod } from "../components/Cell/CellSvod";
 import classNames from "classnames";
 import { CommentColumn } from "../components/Cell/CommentColumn";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Row = ({ index, style }) => {
+  const { state, setState } = useContext(ThemeContext);
+
   return (
     <div style={style} className={classNames(styles.row, styles.row_table)}>
       <CellYear value={data[index].year} />
@@ -20,32 +23,44 @@ const Row = ({ index, style }) => {
   );
 };
 
-export const RootPage = () => (
-  <div className={styles.root}>
-    <div className={classNames(styles.row, styles.header_table)}>
-      <span className={classNames(styles.header_table_name, styles.year)}>
-        Год
-      </span>
-      <span className={classNames(styles.header_table_name, styles.start)}>
-        Дата запуска
-      </span>
-      <span className={classNames(styles.header_table_name, styles.end)}>
-        Дата остановки
-      </span>
-      <span className={classNames(styles.header_table_name, styles.svod)}>
-        Выбрано
-      </span>
-      <span className={classNames(styles.header_table_name, styles.comment)}>
-        Комментарии
-      </span>
-    </div>
-    <FixedSizeList
-      height={500}
-      width={1300}
-      itemSize={50}
-      itemCount={data.length}
-    >
-      {Row}
-    </FixedSizeList>
-  </div>
-);
+export const RootPage = () => {
+  let [state, setState] = useState({});
+
+  useEffect(() => {
+    setState(JSON.parse(localStorage.getItem("comments") || "{}"));
+  }, []);
+
+  return (
+    <ThemeContext.Provider value={{ state, setState }}>
+      <div className={styles.root}>
+        <div className={classNames(styles.row, styles.header_table)}>
+          <span className={classNames(styles.header_table_name, styles.year)}>
+            Год
+          </span>
+          <span className={classNames(styles.header_table_name, styles.start)}>
+            Дата запуска
+          </span>
+          <span className={classNames(styles.header_table_name, styles.end)}>
+            Дата остановки
+          </span>
+          <span className={classNames(styles.header_table_name, styles.svod)}>
+            Выбрано
+          </span>
+          <span
+            className={classNames(styles.header_table_name, styles.comment)}
+          >
+            Комментарии
+          </span>
+        </div>
+        <FixedSizeList
+          height={500}
+          width={1300}
+          itemSize={50}
+          itemCount={data.length}
+        >
+          {Row}
+        </FixedSizeList>
+      </div>
+    </ThemeContext.Provider>
+  );
+};
