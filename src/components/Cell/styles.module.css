@@ -1,0 +1,32 @@
+.value {
+  color: rgb(240, 181, 112);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.year {
+  min-width: 100px;
+}
+
+.date {
+  min-width: 170px;
+}
+
+.svod {
+  min-width: 120px;
+}
+
+.comment {
+  width: 250px;
+  height: 80%;
+  resize: none;
+  color: rgb(240, 181, 112);
+  background-color: rgb(24, 13, 13);
+  outline: none;
+  -moz-appearance: none;
+  border: 1px solid #999;
+}
