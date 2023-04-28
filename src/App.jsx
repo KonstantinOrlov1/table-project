@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { RootPage } from "./pages/RootPage";
 import styles from "./stylesApp.module.css";
 
