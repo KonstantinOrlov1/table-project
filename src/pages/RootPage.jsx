@@ -8,6 +8,7 @@ import { CellSvod } from "../components/Cell/CellSvod";
 import classNames from "classnames";
 import { CommentColumn } from "../components/Cell/CommentColumn";
 import { ThemeContext } from "../context/ThemeContext";
+import { HEIGHTCOMPONENT, HEIGHTROW, WIDTHCOMPONENT } from "../utils/helpers";
 
 const Row = ({ index, style }) => {
   const { state, setState } = useContext(ThemeContext);
@@ -65,9 +66,9 @@ export const RootPage = () => {
           </span>
         </div>
         <FixedSizeList
-          height={500}
-          width={1300}
-          itemSize={50}
+          height={HEIGHTCOMPONENT}
+          width={WIDTHCOMPONENT}
+          itemSize={HEIGHTROW}
           itemCount={data.length}
         >
           {Row}
