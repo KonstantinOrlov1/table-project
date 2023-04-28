@@ -1,14 +1,11 @@
-import { useState } from "react";
-import { addComments } from "../../utils/helpers";
 import styles from "./styles.module.css";
 
-export const CommentColumn = ({ getComment, idElem, index, setState }) => {
-  const id = idElem?.$oid ? idElem?.$oid : `${index}`;
+export const CommentColumn = ({ getComment, idElem, setState }) => {
+  const id = idElem.$oid;
   const comment = getComment || "";
 
   return (
     <textarea
-      name=""
       id={id}
       cols="3"
       rows="1"

@@ -21,7 +21,6 @@ const Row = ({ index, style }) => {
       <CommentColumn
         setState={setState}
         idElem={data[index]._id}
-        index={index}
         getComment={state[data[index]._id.$oid]}
       />
     </div>
@@ -34,6 +33,7 @@ export const RootPage = () => {
       return JSON.parse(localStorage.getItem("comments")) || {};
     } catch (err) {
       console.log(err);
+      return {};
     }
   }, []);
 
