@@ -29,6 +29,7 @@ const Row = ({ index, style }) => {
 };
 
 export const RootPage = () => {
+  //тут понимаю, что запись немного странная, дал пояснение в файле Readme.md
   let [state, setState] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("comments")) || {};
