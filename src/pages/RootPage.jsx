@@ -35,6 +35,7 @@ export const RootPage = () => {
       return JSON.parse(localStorage.getItem("comments")) || {};
     } catch (err) {
       console.log(err);
+      localStorage.setItem("comments", {});
       return {};
     }
   }, []);
